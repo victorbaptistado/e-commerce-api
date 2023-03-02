@@ -1,9 +1,27 @@
 var express = require('express');
-var router = express.Router();
+var usersRouter = express.Router();
+const db = require('../db')
+/*
+usersRouter.get('/:id', (req, res, next) => {
+  db.query('SELECT * FROM users WHERE id = $1', [req.params.id], (err, result) => {
+    if (err) {
+      return next(err)
+    }
+    res.send(result.rows[0])
+  })
+})*/
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+usersRouter.get('/', (req, res, next) => {
+  db.query('SELECT * FROM users')
+    .then(result => console.log(result.rows))
+    .catch(err => console.error("err"));
 });
 
-module.exports = router;
+
+
+module.exports = usersRouter;
+
+
+
+
+
