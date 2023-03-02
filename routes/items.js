@@ -5,8 +5,7 @@ const db = require('../db')
 
 itemsRouter.get('/', (req, res, next) => {
     db.query('SELECT * FROM items')
-      .then(result => 
-        res.json(result.rows))
+      .then(result => res.json(result.rows))
       .catch(err => console.error("err"));
 });
   
