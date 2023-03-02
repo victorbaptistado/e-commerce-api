@@ -12,16 +12,6 @@ const pool = new Pool({
   port: process.env.DB_PORT
 });
 
-
-pool.query('SELECT NOW()', (err, res) => {
-  if (err) {
-    console.error('Error executing query', err.stack);
-  } else {
-    console.log('Successfully connected to PostgreSQL database:', res.rows[0]);
-  }
-});
-
- 
 module.exports = {
   query: (text, params, callback) => {
     return pool.query(text, params, callback)
